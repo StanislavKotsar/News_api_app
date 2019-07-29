@@ -26,9 +26,11 @@ class NewsTableViewController: UITableViewController {
     
     
     func addSearchBarInNavigationController () {
-        title = "Title"
+        title = "News app"
         searchBarVC = UISearchController(searchResultsController: nil)
         searchBarVC.searchBar.delegate = self
+        
+        searchBarVC.definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchBarVC
     }
@@ -68,6 +70,11 @@ extension NewsTableViewController: NewsTableViewModelDelegate {
 extension NewsTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBarVC.dismiss(animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        newsTableVM.query = searchBar.text!
+        newsTableVM.articlesDidChanged()
     }
 }
 

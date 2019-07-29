@@ -53,8 +53,7 @@ class LocalService {
     
     func updateArticles (articles: [ArticleData]) {
         deleteObjects()
-        insertArticles(articles: articles
-        )
+        insertArticles(articles: articles)
     }
     
     func insertArticles(articles: [ArticleData]) {
@@ -71,11 +70,17 @@ class LocalService {
     func fetchArticles(with query: String) -> [Article]? {
         let request = Article.fetchRequest() as NSFetchRequest<Article>
         if !query.isEmpty {
-            request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", query)
+            var compoundPredicate: [NSPredicate] = []
+            compoundPredicate.append(NSPredicate(format: "title CONTAINS[cd] %@", query))
+            compoundPredicate.append(NSPredicate(format: "descript CONTAINS[cd] %@", query))
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: compoundPredicate)
         }
+        
         do {
-            return try context.fetch(Article.fetchRequest())
+            let articles = try context.fetch(request)
+            return articles as! [Article]
         } catch let error as NSError {
+            
             print("Could not fetch. \(error), \(error.userInfo)")
             return nil
         }
