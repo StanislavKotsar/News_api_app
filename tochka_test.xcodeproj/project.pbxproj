@@ -7,23 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF24196222EF1F38001E03E1 /* ArticleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A5822EE1486001B008E /* ArticleData.swift */; };
+		DF24196722EF1F97001E03E1 /* tochka_test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF24196522EF1F97001E03E1 /* tochka_test.xcdatamodeld */; };
+		DF24196A22EF209A001E03E1 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24196822EF209A001E03E1 /* Article+CoreDataClass.swift */; };
+		DF24196B22EF209A001E03E1 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24196922EF209A001E03E1 /* Article+CoreDataProperties.swift */; };
+		DF24196E22EF61DF001E03E1 /* NewsTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24196D22EF61DF001E03E1 /* NewsTableViewModel.swift */; };
+		DF39043922EF0F06009AB350 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF39043822EF0F06009AB350 /* LocalService.swift */; };
 		DF7A9A4122EE0D18001B008E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A4022EE0D18001B008E /* AppDelegate.swift */; };
-		DF7A9A4322EE0D18001B008E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A4222EE0D18001B008E /* ViewController.swift */; };
-		DF7A9A4622EE0D18001B008E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7A9A4422EE0D18001B008E /* Main.storyboard */; };
-		DF7A9A4922EE0D18001B008E /* tochka_test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A4722EE0D18001B008E /* tochka_test.xcdatamodeld */; };
+		DF7A9A4322EE0D18001B008E /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A4222EE0D18001B008E /* NewsTableViewController.swift */; };
 		DF7A9A4B22EE0D1A001B008E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF7A9A4A22EE0D1A001B008E /* Assets.xcassets */; };
 		DF7A9A4E22EE0D1A001B008E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7A9A4C22EE0D1A001B008E /* LaunchScreen.storyboard */; };
+		DF7A9A5D22EE1A4B001B008E /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A5C22EE1A4B001B008E /* RemoteService.swift */; };
+		DF7A9A5F22EE1DC7001B008E /* WebModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A5E22EE1DC7001B008E /* WebModel.swift */; };
+		DF7A9A6222EE3819001B008E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A6122EE3819001B008E /* NavigationController.swift */; };
+		DF7A9A6722EE3AB5001B008E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7A9A6622EE3AB5001B008E /* NewsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DF24196622EF1F97001E03E1 /* tochka_test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tochka_test.xcdatamodel; sourceTree = "<group>"; };
+		DF24196822EF209A001E03E1 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DF24196922EF209A001E03E1 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DF24196D22EF61DF001E03E1 /* NewsTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewModel.swift; sourceTree = "<group>"; };
+		DF39043822EF0F06009AB350 /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		DF7A9A3D22EE0D18001B008E /* tochka_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tochka_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7A9A4022EE0D18001B008E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF7A9A4222EE0D18001B008E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DF7A9A4522EE0D18001B008E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DF7A9A4822EE0D18001B008E /* tochka_test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tochka_test.xcdatamodel; sourceTree = "<group>"; };
+		DF7A9A4222EE0D18001B008E /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		DF7A9A4A22EE0D1A001B008E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF7A9A4D22EE0D1A001B008E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF7A9A4F22EE0D1A001B008E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF7A9A5822EE1486001B008E /* ArticleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleData.swift; sourceTree = "<group>"; };
+		DF7A9A5C22EE1A4B001B008E /* RemoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteService.swift; sourceTree = "<group>"; };
+		DF7A9A5E22EE1DC7001B008E /* WebModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebModel.swift; sourceTree = "<group>"; };
+		DF7A9A6122EE3819001B008E /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		DF7A9A6622EE3AB5001B008E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF24196C22EF61A3001E03E1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				DF24196D22EF61DF001E03E1 /* NewsTableViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		DF7A9A3422EE0D18001B008E = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +80,55 @@
 		DF7A9A3F22EE0D18001B008E /* tochka_test */ = {
 			isa = PBXGroup;
 			children = (
+				DF24196C22EF61A3001E03E1 /* ViewModels */,
+				DF7A9A6322EE39C6001B008E /* Views */,
+				DF7A9A6022EE37DE001B008E /* Controllers */,
+				DF7A9A5A22EE1A1F001B008E /* Services */,
+				DF7A9A5722EE1411001B008E /* Model */,
 				DF7A9A4022EE0D18001B008E /* AppDelegate.swift */,
-				DF7A9A4222EE0D18001B008E /* ViewController.swift */,
-				DF7A9A4422EE0D18001B008E /* Main.storyboard */,
 				DF7A9A4A22EE0D1A001B008E /* Assets.xcassets */,
 				DF7A9A4C22EE0D1A001B008E /* LaunchScreen.storyboard */,
 				DF7A9A4F22EE0D1A001B008E /* Info.plist */,
-				DF7A9A4722EE0D18001B008E /* tochka_test.xcdatamodeld */,
 			);
 			path = tochka_test;
+			sourceTree = "<group>";
+		};
+		DF7A9A5722EE1411001B008E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF24196822EF209A001E03E1 /* Article+CoreDataClass.swift */,
+				DF24196922EF209A001E03E1 /* Article+CoreDataProperties.swift */,
+				DF24196522EF1F97001E03E1 /* tochka_test.xcdatamodeld */,
+				DF7A9A5822EE1486001B008E /* ArticleData.swift */,
+				DF7A9A5E22EE1DC7001B008E /* WebModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DF7A9A5A22EE1A1F001B008E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DF7A9A5C22EE1A4B001B008E /* RemoteService.swift */,
+				DF39043822EF0F06009AB350 /* LocalService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DF7A9A6022EE37DE001B008E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF7A9A4222EE0D18001B008E /* NewsTableViewController.swift */,
+				DF7A9A6122EE3819001B008E /* NavigationController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DF7A9A6322EE39C6001B008E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF7A9A6622EE3AB5001B008E /* NewsTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +191,6 @@
 			files = (
 				DF7A9A4E22EE0D1A001B008E /* LaunchScreen.storyboard in Resources */,
 				DF7A9A4B22EE0D1A001B008E /* Assets.xcassets in Resources */,
-				DF7A9A4622EE0D18001B008E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +201,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF7A9A4322EE0D18001B008E /* ViewController.swift in Sources */,
-				DF7A9A4922EE0D18001B008E /* tochka_test.xcdatamodeld in Sources */,
+				DF24196722EF1F97001E03E1 /* tochka_test.xcdatamodeld in Sources */,
+				DF24196222EF1F38001E03E1 /* ArticleData.swift in Sources */,
+				DF24196A22EF209A001E03E1 /* Article+CoreDataClass.swift in Sources */,
+				DF7A9A4322EE0D18001B008E /* NewsTableViewController.swift in Sources */,
+				DF39043922EF0F06009AB350 /* LocalService.swift in Sources */,
+				DF24196B22EF209A001E03E1 /* Article+CoreDataProperties.swift in Sources */,
+				DF7A9A6722EE3AB5001B008E /* NewsTableViewCell.swift in Sources */,
+				DF7A9A5F22EE1DC7001B008E /* WebModel.swift in Sources */,
+				DF24196E22EF61DF001E03E1 /* NewsTableViewModel.swift in Sources */,
+				DF7A9A5D22EE1A4B001B008E /* RemoteService.swift in Sources */,
+				DF7A9A6222EE3819001B008E /* NavigationController.swift in Sources */,
 				DF7A9A4122EE0D18001B008E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +219,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DF7A9A4422EE0D18001B008E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DF7A9A4522EE0D18001B008E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		DF7A9A4C22EE0D1A001B008E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -342,12 +406,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DF7A9A4722EE0D18001B008E /* tochka_test.xcdatamodeld */ = {
+		DF24196522EF1F97001E03E1 /* tochka_test.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DF7A9A4822EE0D18001B008E /* tochka_test.xcdatamodel */,
+				DF24196622EF1F97001E03E1 /* tochka_test.xcdatamodel */,
 			);
-			currentVersion = DF7A9A4822EE0D18001B008E /* tochka_test.xcdatamodel */;
+			currentVersion = DF24196622EF1F97001E03E1 /* tochka_test.xcdatamodel */;
 			path = tochka_test.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

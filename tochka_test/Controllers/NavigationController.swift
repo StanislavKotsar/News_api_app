@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NavigationController.swift
 //  tochka_test
 //
 //  Created by Станислав Коцарь on 28/07/2019.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        let viewController = NewsTableViewController()
+        setViewControllers([viewController], animated: false)
     }
 
-
 }
-
