@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol NewsTableViewCellDelegate: class {
+    func didTappOnImageButton(cell: UITableViewCell)
+}
+
 class NewsTableViewCell: UITableViewCell {
 
     let titleLabel = UILabel()
     let descriptionLabel = UILabel()
-    
+    let imageButton = UIButton()
+    weak var delegate: NewsTableViewCellDelegate?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,6 +32,8 @@ class NewsTableViewCell: UITableViewCell {
     private func setupUI() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        imageButton.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(imageButton)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
         
@@ -41,12 +48,26 @@ class NewsTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
             ])
         
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        
+        imageButton.setTitle("Go to article image", for: .normal)
+        imageButton.backgroundColor = .gray
+        imageButton.addTarget(self, action: #selector(didTappedOnImageButton), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            imageButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            imageButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            imageButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            imageButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
+            ])
+    }
+    
+    @objc func didTappedOnImageButton(sender: UIButton) {
+        delegate?.didTappOnImageButton(cell: self)
     }
 
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class NewsTableViewController: UITableViewController {
     
-    var searchBar: UISearchController!
+    var searchBarVC: UISearchController!
     var newsTableVM: NewsTableViewModel!
     
     override func viewDidLoad() {
@@ -27,8 +27,10 @@ class NewsTableViewController: UITableViewController {
     
     func addSearchBarInNavigationController () {
         title = "Title"
-        searchBar = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchBar
+        searchBarVC = UISearchController(searchResultsController: nil)
+        searchBarVC.searchBar.delegate = self
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchBarVC
     }
     
     
@@ -45,6 +47,7 @@ class NewsTableViewController: UITableViewController {
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
      let index = indexPath.row
+     cell.delegate = self
      cell.titleLabel.text = newsTableVM.articles[index].title
      cell.descriptionLabel.text = newsTableVM.articles[index].descript
      return cell
@@ -59,4 +62,24 @@ extension NewsTableViewController: NewsTableViewModelDelegate {
             self.tableView.reloadData()
         }
     }
+}
+
+
+extension NewsTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBarVC.dismiss(animated: true)
+    }
+}
+
+extension NewsTableViewController: NewsTableViewCellDelegate {
+    func didTappOnImageButton(cell: UITableViewCell) {
+        let index = self.tableView.indexPath(for: cell)!.row
+        let string = newsTableVM.articles[index].imageUrl
+        guard let url = URL(string: string!) else {
+            return
+        }
+        UIApplication.shared.open(url)
+    }
+    
+    
 }
