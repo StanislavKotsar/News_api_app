@@ -11,6 +11,7 @@ import CoreData
 
 protocol LocalServiceDelegate: class {
     func articlesDidChanged (totalRows: Int?)
+    func increasePage()
 }
 
 class LocalService {
@@ -28,6 +29,7 @@ class LocalService {
                 self.handleSuccesResponse(result: result, page: page)
             case .failure(let error):
                 print(error)
+                self.delegate?.articlesDidChanged(totalRows: nil)
             }
         }
     }
@@ -43,8 +45,10 @@ class LocalService {
     
     func handleSuccesResponse (result: WebModel, page: Int) {
         if page == 1 {
+            delegate?.increasePage()
             updateArticles(articles: result.articles, totalRows: result.totalResults)
         } else {
+            delegate?.increasePage()
             insertArticles(articles: result.articles, totalRows: result.totalResults)
         }
     }

@@ -35,10 +35,16 @@ class NewsTableViewController: UITableViewController {
         title = "News app"
         searchBarVC = UISearchController(searchResultsController: nil)
         searchBarVC.searchBar.delegate = self
-        
         searchBarVC.definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchBarVC
+        
+        
+        searchBarVC.searchResultsUpdater = self
+        searchBarVC.obscuresBackgroundDuringPresentation = false
+        searchBarVC.searchBar.placeholder = "Search Candies"
+ 
+
     }
     
     
@@ -49,7 +55,9 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return newsTableVM.totalRows
+        print(newsTableVM.numberOfRows)
+        
+        return newsTableVM.numberOfRows
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,6 +101,14 @@ extension NewsTableViewController: UISearchBarDelegate {
         newsTableVM.query = searchBar.text!
         newsTableVM.articlesDidChanged(totalRows: nil)
     }
+}
+
+extension NewsTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    
 }
 
 extension NewsTableViewController: NewsTableViewCellDelegate {

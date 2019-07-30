@@ -25,13 +25,15 @@ final class RemoteService {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            guard let data = data,
-                let result = try? JSONDecoder().decode(WebModel.self, from: data) else {
-                    completion(.failure(.decodingError))
-                    return
+            guard let data = data else { return }
+            do {
+                let result = try JSONDecoder().decode(WebModel.self, from: data)
+                completion(.success(result))
+            } catch {
+                print(error)
+                completion(.failure(.decodingError))
+                return
             }
-            
-            completion(.success(result))
         }.resume()
     }
 }

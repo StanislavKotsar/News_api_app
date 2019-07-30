@@ -24,6 +24,9 @@ class NewsTableViewModel {
     var currentCount: Int {
         return articles.count
     }
+    var numberOfRows: Int {
+        return query.isEmpty ? totalRows : articles.count
+    }
     
     required init() {
         
@@ -48,19 +51,27 @@ class NewsTableViewModel {
 }
 
 extension NewsTableViewModel: LocalServiceDelegate {
+    func increasePage() {
+         page += 1
+    }
+    
     
     func articlesDidChanged(totalRows: Int?) {
-        if let totalRows = totalRows {
-            self.totalRows = totalRows
-        }
-        page += 1
+        
         guard let articles = localService.fetchArticles(with: query) else { return }
         self.articles = articles
-        if page > 2 {
-            let indexPathsToReload = self.calculateIndexPathsToReload(from: articles)
-            self.delegate?.updateTableView(with: indexPathsToReload)
+        if let totalRows = totalRows {
+            self.totalRows = totalRows
         } else {
-            self.delegate?.updateTableView(with: nil)
+           self.totalRows = articles.count
+        }
+        DispatchQueue.main.async {
+            if self.page > 2 && self.query.isEmpty {
+                let indexPathsToReload = self.calculateIndexPathsToReload(from: articles)
+                self.delegate?.updateTableView(with: indexPathsToReload)
+            } else {
+                self.delegate?.updateTableView(with: nil)
+            }
         }
     }
 }
