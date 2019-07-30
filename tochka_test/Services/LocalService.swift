@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 protocol LocalServiceDelegate: class {
-    func articlesDidChanged ()
+    func articlesDidChanged (totalRows: Int?)
 }
 
 class LocalService {
@@ -43,20 +43,19 @@ class LocalService {
     
     func handleSuccesResponse (result: WebModel, page: Int) {
         if page == 1 {
-            updateArticles(articles: result.articles)
+            updateArticles(articles: result.articles, totalRows: result.totalResults)
         } else {
-            insertArticles(articles: result.articles)
+            insertArticles(articles: result.articles, totalRows: result.totalResults)
         }
-        insertArticles(articles: result.articles)
     }
     
     
-    func updateArticles (articles: [ArticleData]) {
+    func updateArticles (articles: [ArticleData], totalRows: Int?) {
         deleteObjects()
-        insertArticles(articles: articles)
+        insertArticles(articles: articles, totalRows: totalRows)
     }
     
-    func insertArticles(articles: [ArticleData]) {
+    func insertArticles(articles: [ArticleData], totalRows: Int?) {
         for remoteArticle in articles {
             let article = Article(entity: Article.entity(), insertInto: context)
             article.descript = remoteArticle.description
@@ -64,7 +63,9 @@ class LocalService {
             article.imageUrl = remoteArticle.urlToImage
         }
         saveContext()
-        delegate?.articlesDidChanged()
+        DispatchQueue.main.async {
+            self.delegate?.articlesDidChanged(totalRows: totalRows)
+        }
     }
     
     func fetchArticles(with query: String) -> [Article]? {
@@ -78,7 +79,7 @@ class LocalService {
         
         do {
             let articles = try context.fetch(request)
-            return articles as! [Article]
+            return articles
         } catch let error as NSError {
             
             print("Could not fetch. \(error), \(error.userInfo)")

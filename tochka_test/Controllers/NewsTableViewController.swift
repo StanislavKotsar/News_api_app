@@ -16,11 +16,17 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         newsTableVM = NewsTableViewModel(delegate: self)
+        configureTableView()
+        addSearchBarInNavigationController()
+        newsTableVM.fetchNewArticles()
+    }
+    
+    func configureTableView () {
+        tableView.isHidden = true
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.prefetchDataSource = self
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: "NewsTableViewCell")
-        addSearchBarInNavigationController()
-        newsTableVM.localService.fetchArticlesFromServer(with: newsTableVM.page)
     }
     
     
@@ -43,27 +49,38 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return newsTableVM.articles.count
+        return newsTableVM.totalRows
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
      let index = indexPath.row
-     cell.delegate = self
-     cell.titleLabel.text = newsTableVM.articles[index].title
-     cell.descriptionLabel.text = newsTableVM.articles[index].descript
+        if isLoadingCell(for: indexPath) {
+            
+        } else {
+            cell.delegate = self
+            cell.titleLabel.text = newsTableVM.articles[index].title
+            cell.descriptionLabel.text = newsTableVM.articles[index].descript
+        }
      return cell
      }
+    
+    
     
 }
 
 
 extension NewsTableViewController: NewsTableViewModelDelegate {
-    func updateTableView() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    func updateTableView(with newIndexPathsToReload: [IndexPath]?) {
+        guard let newIndexPathsToReload = newIndexPathsToReload else {
+            tableView.isHidden = false
+            tableView.reloadData()
+            return
         }
+        let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+        tableView.reloadRows(at: indexPathsToReload, with: .automatic)
     }
+    
 }
 
 
@@ -74,7 +91,7 @@ extension NewsTableViewController: UISearchBarDelegate {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         newsTableVM.query = searchBar.text!
-        newsTableVM.articlesDidChanged()
+        newsTableVM.articlesDidChanged(totalRows: nil)
     }
 }
 
@@ -89,4 +106,24 @@ extension NewsTableViewController: NewsTableViewCellDelegate {
     }
     
     
+}
+
+extension NewsTableViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if indexPaths.contains(where: isLoadingCell) {
+            newsTableVM.fetchNewArticles()
+        }
+    }
+}
+
+private extension NewsTableViewController {
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= newsTableVM.currentCount
+    }
+    
+    func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+        let indexPathsForVisibleRows = tableView.indexPathsForVisibleRows ?? []
+        let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
+        return Array(indexPathsIntersection)
+    }
 }
