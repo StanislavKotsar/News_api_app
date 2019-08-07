@@ -20,7 +20,7 @@ class LocalService {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let remoteService = RemoteService()
-    var delegate: LocalServiceDelegate?
+    weak var delegate: LocalServiceDelegate?
     
     func fetchArticlesFromServer (with page: Int) {
         remoteService.loadArticles(page: page) { result in
@@ -29,7 +29,6 @@ class LocalService {
                 self.handleSuccesResponse(result: result, page: page)
             case .failure(let error):
                 print(error)
-                self.delegate?.articlesDidChanged(totalRows: nil)
             }
         }
     }
@@ -44,11 +43,10 @@ class LocalService {
     }
     
     func handleSuccesResponse (result: WebModel, page: Int) {
+        delegate?.increasePage()
         if page == 1 {
-            delegate?.increasePage()
             updateArticles(articles: result.articles, totalRows: result.totalResults)
         } else {
-            delegate?.increasePage()
             insertArticles(articles: result.articles, totalRows: result.totalResults)
         }
     }

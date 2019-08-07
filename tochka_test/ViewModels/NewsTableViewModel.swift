@@ -1,6 +1,5 @@
 //
 //  NewsTableViewModel.swift
-//  tochka_test
 //
 //  Created by Станислав Коцарь on 29/07/2019.
 //  Copyright © 2019 Станислав Коцарь. All rights reserved.
@@ -50,14 +49,14 @@ class NewsTableViewModel {
     
 }
 
+
 extension NewsTableViewModel: LocalServiceDelegate {
+    
     func increasePage() {
          page += 1
     }
     
-    
     func articlesDidChanged(totalRows: Int?) {
-        
         guard let articles = localService.fetchArticles(with: query) else { return }
         self.articles = articles
         if let totalRows = totalRows {

@@ -63,8 +63,10 @@ class NewsTableViewController: UITableViewController {
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as! NewsTableViewCell
      let index = indexPath.row
+        print(newsTableVM.articles.count, indexPath.row)
         if isLoadingCell(for: indexPath) {
-            
+            cell.titleLabel.text = ""
+            cell.descriptionLabel.text = "\n \n \n \n \n"
         } else {
             cell.delegate = self
             cell.titleLabel.text = newsTableVM.articles[index].title
